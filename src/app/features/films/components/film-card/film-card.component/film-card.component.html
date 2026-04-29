@@ -1,0 +1,24 @@
+<div (click)="onCardClick()" class="card">
+  <img
+    [alt]="film().title"
+    [ngSrc]="film().posterUrl"
+    class="card__poster"
+    width="300"
+    height="450"
+  >
+
+  <div class="card__content">
+    <h3 class="card__title">{{ film().title }}</h3>
+    <p class="card__meta">{{ film().year }} | {{ film().genre }}</p>
+    <p class="card__rating">⭐ {{ film().rating }}/10</p>
+  </div>
+
+  <button
+    (click)="onFavoriteClick($event)"
+    [class.card__favorite--active]="film().isFavorite"
+    class="card__favorite"
+    type="button"
+  >
+    {{ film().isFavorite ? '★' : '☆' }}
+  </button>
+</div>

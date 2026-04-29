@@ -1,0 +1,30 @@
+@if (film(); as currentFilm) {
+  <div class="film-details">
+    <button
+      (click)="goBack()"
+      class="film-details__back"
+      type="button"
+    >
+      ← Back to Films
+    </button>
+
+    <div class="film-details__content">
+      <img
+        [alt]="currentFilm.title"
+        [ngSrc]="currentFilm.posterUrl"
+        class="film-details__poster"
+        width="300"
+        height="450"
+      >
+
+      <div class="fil-details__info">
+        <h1>{{ currentFilm.title }}</h1>
+        <p><strong>Year:</strong> {{ currentFilm.year }}</p>
+        <p><strong>Genre:</strong> {{ currentFilm.genre }}</p>
+        <p><strong>Rating:</strong> ⭐ {{ currentFilm.rating }}/10</p>
+        <p><strong>Duration:</strong> {{ currentFilm.duration | duration }}</p>
+        <p class="film-details__description">{{ currentFilm.description }}</p>
+      </div>
+    </div>
+  </div>
+}

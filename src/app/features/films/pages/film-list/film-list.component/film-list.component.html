@@ -1,0 +1,17 @@
+<div class="film-list">
+  <app-search-bar (searchChange)="onSearchChange($event)" />
+
+  @if (filteredFilms().length > 0) {
+    <div class="film-list__grid">
+      @for (film of filteredFilms(); track film.id) {
+        <app-film-card
+          [film]="film"
+          (filmClick)="onFilmClick($event)"
+          (favoriteToggle)="onFavoriteToggle($event)"
+        />
+      }
+    </div>
+  } @else {
+    <p class="film-list__empty">No films found</p>
+  }
+</div>
