@@ -2,11 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   padding: 2rem 1rem;
   text-align: center;
 
   &__content {
-    max-width: 600px;
     width: 100%;
   }
 
@@ -15,10 +15,12 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+
     margin-bottom: 2rem;
+
+    color: #667eea;
     font-size: 6rem;
     font-weight: 700;
-    color: #667eea;
 
     @media (max-width: 768px) {
       font-size: 4rem;
@@ -48,10 +50,11 @@
   }
 
   &__title {
+    margin-bottom: 1rem;
+
+    color: #242424;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #242424;
-    margin-bottom: 1rem;
 
     @media (max-width: 768px) {
       font-size: 2rem;
@@ -63,10 +66,10 @@
   }
 
   &__message {
-    font-size: 1.25rem;
-    color: #666;
-    line-height: 1.6;
     margin-bottom: 2.5rem;
+    color: #666;
+    font-size: 1.25rem;
+    line-height: 1.6;
 
     @media (max-width: 425px) {
       font-size: 1.1rem;
@@ -81,22 +84,22 @@
   }
 
   .btn {
+    display: inline-block;
     padding: 1rem 2rem;
-    font-size: 1.1rem;
     border-radius: 8px;
     text-decoration: none;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
-    display: inline-block;
 
     &-primary {
       background: #667eea;
-      color: white;
       border: none;
+      color: white;
 
       &:hover {
         background: #5568d3;
-        transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        transform: translateY(-2px);
       }
     }
   }
