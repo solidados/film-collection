@@ -8,4 +8,5 @@ export interface Film {
   description: string;
   posterUrl: string;
   isFavorite: boolean;
+  slug?: string;
 }

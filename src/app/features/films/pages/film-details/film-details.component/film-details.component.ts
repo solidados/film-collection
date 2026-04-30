@@ -13,17 +13,26 @@ import type { Film } from '@features/films/models/film.model';
   styleUrl: './film-details.component.scss',
 })
 export class FilmDetailsComponent implements OnInit {
-  film = signal<Film | null>(null);
-  private filmService = inject(FilmService);
-  private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private filmService = inject(FilmService);
+
+  film = signal<Film | null>(null);
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    const foundFilm = this.filmService.getFilmById(id);
+    const slug = this.route.snapshot.paramMap.get('slug');
+    // const id = Number(this.route.snapshot.paramMap.get('id'));
+    // const foundFilm = this.filmService.getFilmById(id);
+
+    if (!slug) {
+      void this.router.navigate(['/films']);
+      return;
+    }
+
+    const foundFilm = this.filmService.getFilmBySlug(slug);
 
     if (!foundFilm) {
-      this.router.navigate(['/films']);
+      void this.router.navigate(['/films']);
       return;
     }
 
