@@ -28,14 +28,14 @@ export class FilmDetailsComponent implements OnInit {
     // const foundFilm = this.filmService.getFilmById(id);
 
     if (!slug) {
-      void this.router.navigate(['/films']);
+      void this.router.navigate(['/404']);
       return;
     }
 
     const foundFilm = this.filmService.getFilmBySlug(slug);
 
     if (!foundFilm) {
-      void this.router.navigate(['/films']);
+      void this.router.navigate(['/404']);
       return;
     }
 

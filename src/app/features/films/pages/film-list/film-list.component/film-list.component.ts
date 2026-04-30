@@ -27,18 +27,18 @@ export class FilmListComponent {
     this.searchQuery.set(query);
   }
 
-  onFilmClick(id: number):void {
+  onFilmClick(id: number): void {
     const film = this.filmService.getFilmById(id);
     console.log('Film clicked', film);
 
     if (film?.slug) {
       void this.router.navigate(['/films', film.slug]);
     } else {
-      void this.router.navigate(['/films', id])
+      void this.router.navigate(['/404', id]);
     }
   }
 
   onFavoriteToggle(id: number): void {
-    this.filmService.toggleFavorite(id)
+    this.filmService.toggleFavorite(id);
   }
 }
