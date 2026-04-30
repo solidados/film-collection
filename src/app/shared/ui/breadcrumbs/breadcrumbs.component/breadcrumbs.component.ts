@@ -1,5 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
+import { FilmService } from '@features/films/services/film.service';
 import type { Breadcrumb } from '@features/films/models/breadcrumb.model';
 
 @Component({
@@ -11,31 +12,48 @@ import type { Breadcrumb } from '@features/films/models/breadcrumb.model';
 })
 export class BreadcrumbsComponent {
   private router = inject(Router);
-  private url = signal(this.router.url);
+  private filmService = inject(FilmService);
+
+  breadcrumbs = signal<Breadcrumb[]>([]);
 
   constructor() {
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
-        this.url.set(this.router.url);
+        this.updateBreadcrumbs();
       }
     });
+
+    // * -- initial brreadcrumbs on componentDidMount
+    this.updateBreadcrumbs();
   }
 
-  breadcrumbs = computed(() => {
-    const parts = this.url().split('/').filter(Boolean);
-    const result: Breadcrumb[] = [{ label: 'Home', url: '/' }];
+  private updateBreadcrumbs(): void {
+    const url = this.router.url;
+    const crumbs: Breadcrumb[] = [];
 
-    let path = '';
+    crumbs.push({
+      label: 'Home',
+      url: '/films',
+      active: url === '/films' || url === '/',
+    });
 
-    for (const part of parts) {
-      path += `/${part}`;
-      result.push({
-        label: this.formatLabel(part),
-        url: path,
-      });
+    const slugMatch = url.match(/\/films\/([^/?]+)/);
+
+    if (slugMatch) {
+      const slug = slugMatch[1];
+      const film = this.filmService.getFilmBySlug(slug);
+
+      if (film) {
+        crumbs.push({
+          label: film.title,
+          url: `/films/${slug}`,
+          active: true,
+        });
+      }
     }
-    return result;
-  });
+
+    this.breadcrumbs.set(crumbs);
+  }
 
   private formatLabel(value: string): string {
     return value.replace('-', ' ').replace(/\b\w/g, (char) => char.toUpperCase());

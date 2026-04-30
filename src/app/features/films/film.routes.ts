@@ -3,6 +3,6 @@ import { FilmListComponent } from '@features/films/pages/film-list/film-list.com
 import { FilmDetailsComponent } from '@features/films/pages/film-details/film-details.component/film-details.component';
 
 export const FILM_ROTES: Routes = [
-  { path: '', component: FilmListComponent },
-  { path: ':id', component: FilmDetailsComponent },
+  { path: '', component: FilmListComponent, data: { breadcrumb: 'Home' } },
+  { path: ':slug', component: FilmDetailsComponent },
 ];
