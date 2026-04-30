@@ -1,23 +1,60 @@
 .header {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
+  padding: 1rem;
+
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   &-logo {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 1rem;
 
-    & img {
-      vertical-align: top;
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
     }
 
-    & p {
-      font-size: 1.625rem;
-      font-weight: bold;
+    p {
+      margin: 0;
+      color: #242424;
+      font-size: 1.5rem;
+      font-weight: 700;
+
+      @media (max-width: 425px) {
+        font-size: 1.25rem;
+      }
     }
+  }
+
+  &__nav {
+    a {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      color: #555;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(102, 126, 234, 0.1);
+        color: #667eea;
+      }
+
+      &.active {
+        color: #667eea;
+        font-weight: 600;
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    padding: 0.75rem;
   }
 }

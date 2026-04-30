@@ -1,4 +1,5 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilmService } from '@features/films/services/film.service';
@@ -16,6 +17,8 @@ export class FilmDetailsComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private filmService = inject(FilmService);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
 
   film = signal<Film | null>(null);
 
@@ -37,6 +40,13 @@ export class FilmDetailsComponent implements OnInit {
     }
 
     this.film.set(foundFilm);
+
+    this.titleService.setTitle(`${foundFilm.title} (${foundFilm.year}) - Film Collection`);
+
+    this.metaService.updateTag({
+      name: 'description',
+      content: foundFilm.description,
+    });
   }
 
   goBack(): void {
