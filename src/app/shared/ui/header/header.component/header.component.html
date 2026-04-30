@@ -1,6 +1,9 @@
 <header class="header">
-  <h1 class="header__title">Film Collection</h1>
+  <div class="header-logo">
+    <img [ngSrc]="'/logo-movie.png'" alt="logo" width="50" height="50">
+    <p>Film Collection</p>
+  </div>
   <nav class="header__nav">
-    <a routerLink="/films" routerLinkActive="active">Home</a>
+    <a routerLink="/" routerLinkActive="active">Home</a>
   </nav>
 </header>
