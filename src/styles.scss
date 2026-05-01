@@ -15,6 +15,7 @@ html, body {
   font-family: Lato, sans-serif;
   font-size: 100%;
   line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
 nav, header, footer, aside {
@@ -25,6 +26,10 @@ nav, header, footer, aside {
 h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
   font-weight: normal;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 /* Container */
@@ -49,7 +54,6 @@ button {
     cursor: not-allowed;
   }
 }
-
 
 .btn-primary {
   background-color: #667eea;

@@ -4,8 +4,31 @@
       <img [ngSrc]="'logo-movie.png'" alt="logo" width="50" height="50">
       <p>Film Collection</p>
     </div>
-    <nav class="header__nav">
-      <a routerLink="/" routerLinkActive="active">Home</a>
+
+    <button
+      class="burger"
+      (click)="toggleMenu()"
+      [class.open]="isMenuOpen()"
+      [attr.aria-expanded]="isMenuOpen()"
+      aria-label="Toggle menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="header__nav desktop">
+      <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a routerLink="/films/favorites" routerLinkActive="active">Favorites</a>
+      <a routerLink="/films/about" routerLinkActive="active">About</a>
     </nav>
   </div>
+
+    <nav class="header__nav mobile" [class.open]="isMenuOpen()">
+      <a (click)="closeMenu()" routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a (click)="closeMenu()" routerLink="/films/favorites" routerLinkActive="active">Favorites</a>
+      <a (click)="closeMenu()" routerLink="/films/about" routerLinkActive="active">About</a>
+    </nav>
+
+  <div class="backdrop" [class.open]="isMenuOpen()" (click)="closeMenu()"></div>
 </header>
