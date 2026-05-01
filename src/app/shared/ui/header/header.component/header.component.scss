@@ -76,6 +76,7 @@
   gap: 0.5rem;
 
   & a {
+    position: relative;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     color: #555555;
@@ -177,5 +178,42 @@
   .header__nav a {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
+  }
+}
+
+.favorites-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+// ✅ Favorites Badge Styles
+.favorites-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: #667eea;
+  color: white;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+
+  // ✅ Animation when count changes
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }

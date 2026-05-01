@@ -1,6 +1,7 @@
 import { DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { Component, effect, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { FilmService } from '@features/films/services/film.service';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent {
   isMenuOpen = signal<boolean>(false);
   private readonly el = inject(ElementRef<HTMLElement>);
   private readonly document = inject(DOCUMENT);
+  private filmService = inject(FilmService);
 
   constructor() {
     effect((onCleanup) => {
@@ -28,6 +30,8 @@ export class HeaderComponent {
       }
     });
   }
+
+  favoritesCount = this.filmService.favorites;
 
   toggleMenu(): void {
     this.isMenuOpen.update((curr) => !curr);

@@ -19,14 +19,24 @@
 
     <nav class="header__nav desktop">
       <a routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      <a routerLink="/films/favorites" routerLinkActive="active">Favorites</a>
+      <a routerLink="/films/favorites" routerLinkActive="active" class="favorites-link">
+        Favorites
+        @if (favoritesCount().length > 0) {
+          <span class="favorites-badge">{{ favoritesCount().length }}</span>
+        }
+      </a>
       <a routerLink="/films/about" routerLinkActive="active">About</a>
     </nav>
   </div>
 
     <nav class="header__nav mobile" [class.open]="isMenuOpen()">
       <a (click)="closeMenu()" routerLink="/films" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-      <a (click)="closeMenu()" routerLink="/films/favorites" routerLinkActive="active">Favorites</a>
+      <a (click)="closeMenu()" routerLink="/films/favorites" routerLinkActive="active" class="favorites-link">
+        Favorites
+        @if (favoritesCount().length > 0) {
+          <span class="favorites-badge">{{ favoritesCount().length }}</span>
+        }
+      </a>
       <a (click)="closeMenu()" routerLink="/films/about" routerLinkActive="active">About</a>
     </nav>
 

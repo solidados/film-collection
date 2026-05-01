@@ -1,0 +1,33 @@
+<div class="favorites">
+  <div class="favorites__header">
+    <h1 class="favorites__title">My Favorites</h1>
+    <h2 class="favorites__subtitle">
+      @if (favoriteFilms().length > 0) {
+        You have {{ favoriteFilms().length }} favorite {{ favoriteFilms().length === 1 ? 'film' : 'films' }}
+      } @else {
+        No favorite films yet...
+      }
+    </h2>
+  </div>
+
+  @if (favoriteFilms().length > 0) {
+    <div class="favorites__grid">
+      @for (film of favoriteFilms(); track film.id) {
+        <app-film-card
+          [film]="film"
+          (filmClick)="onFilmClick($event)"
+          (favoriteToggle)="onFavoriteToggle($event)"
+        />
+      }
+    </div>
+  } @else {
+    <div class="favorites__empty">
+      <div class="favorites__empty-icon">⭐</div>
+      <h2 class="favorites__empty-title">No Favorites Yet</h2>
+      <p class="favorites__empty-message">
+        Start adding films to your favorites by clicking the ★ button on any film card.
+      </p>
+      <a routerLink="/films" class="favorites__empty-button">Browse Films</a>
+    </div>
+  }
+</div>
